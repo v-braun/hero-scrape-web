@@ -5,13 +5,44 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Hello World</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  
   
   <!-- inject:css -->
   <!-- endinject -->     
 </head>
-<body>
-  TEST
+<body class="hide-results">
+  
+  <div id="input-container">
+    <input placeholder="https://...." id="url-input" type="text" />
+    <button id="url-fetch" type="button">get</button>
+  </div>
+  <div id="template-urls">
+    <a id="randon-gen" href="javascript:void(0)">enter an url or click here</a>
+  </div>
+
+
+  <div id="result-box">
+  <div id="title-loading" class="placeholder-container">
+      <div class="loading-placeholder"></div>
+      <div class="loading-placeholder"></div>
+    </div>    
+    <h class="has-placeholder" id="title"></h>
+    <div id="img-container" class="has-placeholder" >
+      <img id="img" src="" />
+    </div>
+    <div id="img-loading" class="placeholder-container">
+        <div class="loading-placeholder"></div>
+    </div>
+
+    <div class="has-placeholder" id="desc" >      
+    </div>
+    <div id="desc-loading" class="placeholder-container">
+      <div class="loading-placeholder"></div>
+      <div class="loading-placeholder"></div>
+      <div class="loading-placeholder"></div>
+    </div>
+
+  </div>
   
   <!-- inject:js -->
   <!-- endinject -->    

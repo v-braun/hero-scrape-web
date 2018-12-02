@@ -1,8 +1,11 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"net/http"
+	"net/url"
+
+	"github.com/v-braun/hero-scrape"
 
 	"github.com/gorilla/mux"
 	"github.com/v-braun/hero-scrape-web/internal/logger"
@@ -24,5 +27,40 @@ func main() {
 }
 
 func scrapeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World!")
+	query := r.URL.Query()
+	u := query.Get("q")
+	if u == "" {
+		http.NotFound(w, r)
+		return
+	}
+
+	parsedURL, err := url.Parse(u)
+	if parsedURL == nil || err != nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	res, err := http.Get(parsedURL.String())
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	defer res.Body.Close()
+	result, _ := heroscrape.Scrape(parsedURL, res.Body)
+
+	if result == nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	js, err := json.Marshal(result)
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(js)
+
 }
