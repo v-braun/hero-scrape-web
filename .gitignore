@@ -10,3 +10,8 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+bin/
+tmp/
+node_modules/
+package-lock.json
