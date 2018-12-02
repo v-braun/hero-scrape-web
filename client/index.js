@@ -38,17 +38,17 @@ function httpScrape(done){
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/scrape?q='+u);
   xhr.onload = function() {
-      if (xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        document.getElementById('img').src = response.Image;
-        document.getElementById('title').textContent = response.Title;
-        document.getElementById('desc').textContent = response.Description;
-      }
-      else {
-          console.log('have an error!');
-      }
+    var img = document.getElementById('img');
+    var title = document.getElementById('title');
+    var desc = document.getElementById('desc');
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      img.src = response.Image ? response.Image : 'https://via.placeholder.com/400x300.png?text=no%20image%20found';
+      title.textContent = response.Title ? response.Title : 'no title found';
+      desc.textContent = response.Description ? response.Description : 'no description found';
+    }
 
-      done();
+    done();
   };
   xhr.send();  
 }
