@@ -2,7 +2,7 @@
 # build client
 FROM node:8 AS build-env-client
 WORKDIR /app
-COPY config.js ./
+COPY conf.js ./
 COPY gulpfile.js ./
 COPY package.json ./
 COPY ./client ./client/
