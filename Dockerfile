@@ -7,7 +7,7 @@ COPY gulpfile.js ./
 COPY package.json ./
 COPY ./client ./client/
 RUN npm install
-RUN npm run build
+RUN npm run dist
 
 
 
