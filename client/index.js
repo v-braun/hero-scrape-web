@@ -14,6 +14,9 @@ ready(() => {
       return;
     }
 
+    if(!fetchTxtBox.value.startsWith('http://') && !fetchTxtBox.value.startsWith('https://')) {
+      fetchTxtBox.value = 'https://' + fetchTxtBox.value;
+    }
     scrape();
   });
 
@@ -65,6 +68,9 @@ function togglePlaceholders(show){
 function validUrl(url){
   if(!url) return false;
   if(url == '') return false;
+
+  
+
   return true;
 }
 
