@@ -1,11 +1,10 @@
 
 # build client
-FROM node:6 AS build-env-client
+FROM node:8 AS build-env-client
 WORKDIR /app
-COPY *.js ./
+COPY config.js ./
+COPY gulpfile.js ./
 COPY package.json ./
-COPY tsconfig.json ./
-COPY tslint.json ./
 COPY ./client ./client/
 RUN npm install
 RUN npm run build
