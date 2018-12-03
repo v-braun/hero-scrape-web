@@ -13,13 +13,13 @@ RUN npm run dist
 
 FROM golang:1.8
 
-WORKDIR /go/src/app
+WORKDIR /go/src/github.com/v-braun/hero-scrape-web
 COPY . .
 COPY --from=build-env-client /app/bin ./bin/
 
 RUN go get -d -v ./...
-RUN go install -v ./...
-
-CMD ["app"]
 
 EXPOSE 3001
+
+CMD ["go", "run", "main.go"]
+
